@@ -52,9 +52,9 @@ public class Vector3D {
 	public boolean equals(Object vec) {
 		Vector3D vect = (Vector3D) vec;
 		boolean flag = false;
-		if ((Math.abs(this.x - vect.x) < .25 &&
-				Math.abs(this.y - vect.y) < .25 && 
-				Math.abs(this.z - vect.z) < .25)) {
+		if ((Math.abs(this.x - vect.x) < .005 &&
+				Math.abs(this.y - vect.y) < .005 && 
+				Math.abs(this.z - vect.z) < .005)) {
 			flag = true;
 		}
 		return flag;

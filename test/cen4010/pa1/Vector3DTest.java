@@ -6,15 +6,6 @@ import org.junit.jupiter.api.Test;
 
 class Vector3DTest {
 	
-	private Vector3D vect = new Vector3D(3, 4, 5);
-	
-//	@BeforeEach
-//	public void setUp() throws Exception {
-//		vector3D = new Vector3D(int a, int b, int c);
-//	}
-	
-	
-	
 	@Test
 	public void testScale() {
 		double f = 2;
