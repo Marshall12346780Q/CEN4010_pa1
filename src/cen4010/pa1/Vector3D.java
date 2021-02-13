@@ -1,71 +1,51 @@
 package cen4010.pa1;
-
 public class Vector3D {
-	
-	private double x;
-	private double y;
-	private double z;
-	
-	
-	public Vector3D(double x, double y, double z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	final private double x, y, z;
+	protected Vector3D(double xVal, double yVal, double zVal)
+	{
+		x = xVal;
+		y = yVal;
+		z = zVal;
 	}
-	
-	
-	public Vector3D scale(double f) {
-		double x1 = x * f;
-		double y1 = y * f;
-		double z1 = z * f;
-		Vector3D vec = new Vector3D(x1, y1, z1);
-		return vec;
+	protected Vector3D scale(double f)
+	{	
+		return new Vector3D(f * x, f * y, f * z); 
 	}
-	
-	public Vector3D add(Vector3D vec) {
-		Vector3D temp = new Vector3D(vec.x + this.x, vec.y + this.y, vec.z + this.z);
-		return temp;	
+	protected Vector3D add(Vector3D v)
+	{
+		return new Vector3D(this.x + v.x, this.y + v.y, this.z + v.z);
 	}
-	
-	public Vector3D subtract(Vector3D vec) {
-		Vector3D temp = new Vector3D(this.x - vec.x, this.y - vec.y, this.z - vec.z);
-		return temp;
+	protected Vector3D subtract(Vector3D v)
+	{
+		return new Vector3D(this.x - v.x, this.y - v.y, this.z - v.z);
 	}
-	
-	public Vector3D negate() {
-		double x1 = x * -1;
-		double y1 = y * -1;
-		double z1 = z * -1;
-		Vector3D vec = new Vector3D(x1, y1, z1);
-		return vec;
+	protected Vector3D negate()
+	{
+		return new Vector3D(this.x *-1, this.y *-1, this.z *-1);
 	}
-	
-	public double dot(Vector3D v) {
-		double temp = this.x * v.x + this.y * v.y + this.z * v.z;
-		return temp;
+	protected double dot(Vector3D v)
+	{
+		return (this.x * v.x) + (this.y * v.y) + (this.z * v.z);
 	}
-	
-	public double magnitude() {
-		return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+	protected double magnitude()
+	{
+		return java.lang.Math.sqrt(dot(this));
 	}
-	
-	public boolean equals(Object vec) {
-		Vector3D vect = (Vector3D) vec;
-		boolean flag = false;
-		if ((Math.abs(this.x - vect.x) < .005 &&
-				Math.abs(this.y - vect.y) < .005 && 
-				Math.abs(this.z - vect.z) < .005)) {
-			flag = true;
+	@Override
+	public String toString()
+	{
+		return ("Vector Coordinates: (" + this.x + "," + this.y + "," + this.z + ")");
+	}
+	@Override
+	public boolean equals(Object v)
+	{
+		double tolerance = .005;
+		boolean state = false;
+		Vector3D e = (Vector3D) v;
+		if(Math.abs(x-e.x) < tolerance && Math.abs(y-e.y) < tolerance && Math.abs(z-e.z) < tolerance)
+		{
+			state = true;
 		}
-		return flag;
+		return state;
 	}
-	
-	public String toString() {
-		return "Coordinates:\n"
-				+ "X: " + this.x +"\n"
-				+ "Y: " + this.y+"\n"
-				+ "Z: " + this.z+"\n"
-				+ "Magnitude =  " + this.magnitude();
-	}
-
 }
